@@ -6,7 +6,7 @@ setup(
     use_scm_version={
         'write_to': 'src/nros/youpi2/__version__.py'
     },
-    namespace_packages=['pybot'],
+    namespace_packages=['nros'],
     packages=find_packages("src"),
     package_dir={'': 'src'},
     url='',
