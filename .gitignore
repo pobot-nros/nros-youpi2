@@ -1,1 +1,8 @@
 *.pyc
+build
+dist
+__version__.*
+*.edd_info
+*.egg_info
+*.egg-info
+src/nros/__init__.py
