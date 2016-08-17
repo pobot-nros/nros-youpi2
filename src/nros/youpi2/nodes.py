@@ -11,7 +11,7 @@ __author__ = 'Eric Pascual'
 
 
 class ArmNode(NROSNode):
-    CONTROLLER_PATH = DEFAULT_SERVICE_OBJECT_PATH       #: path of the arm service object
+    SO_PATH = DEFAULT_SERVICE_OBJECT_PATH       #: path of the arm service object
 
     _arm = None
     _so = None
@@ -29,7 +29,7 @@ class ArmNode(NROSNode):
     def setup_dbus_environment(self, connection):
         self._so = ArmServiceObject(
             self._arm,
-            connection, self.CONTROLLER_PATH,
+            connection, self.SO_PATH,
             logger=self._logger.getChild('arm') if self._logger else None
         )
 
