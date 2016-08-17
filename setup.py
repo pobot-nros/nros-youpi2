@@ -18,7 +18,7 @@ setup(
     description='Youpi2 arm nROS node',
     entry_points={
         'console_scripts': [
-            'start-youpi2-node = nros.youpi2.nodes:start_node'
+            'youpi2-node = nros.youpi2.nodes:start_node'
         ]
     }
 )
