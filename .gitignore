@@ -6,3 +6,4 @@ __version__.*
 *.egg_info
 *.egg-info
 src/nros/__init__.py
+.fab_tasks~
