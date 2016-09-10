@@ -56,53 +56,61 @@ class ArmServiceObject(dbus.service.Object):
         if self._logger:
             self._logger.info('service object created at path "%s"', svc_obj_path)
 
+    def _invoke(self, meth, *args):
+        if self._logger:
+            self._logger.info('%s(%s) invoked', meth.__name__, ','.join(args))
+        result = meth(*args)
+        if self._logger:
+            self._logger.info('returning %s', result)
+        return result
+
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def open_gripper(self, wait):
-        self._arm.open_gripper(wait)
+        self._invoke(self._arm.open_gripper, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def close_gripper(self, wait):
-        self._arm.close_gripper(wait)
+        self._invoke(self._arm.close_gripper, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def calibrate_gripper(self, wait):
-        self._arm.calibrate_gripper(wait)
+        self._invoke(self._arm.calibrate_gripper, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='ai')
     def seek_origins(self, joint_sequence):
-        self._arm.seek_origins(joint_sequence)
+        self._invoke(self._arm.seek_origins, joint_sequence)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='ib')
     def rotate_hand(self, angle, wait):
-        self._arm.rotate_hand(angle, wait)
+        self._invoke(self._arm.rotate_hand, angle, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='ib')
     def rotate_hand_to(self, angle, wait):
-        self._arm.rotate_hand_to(angle, wait)
+        self._invoke(self._arm.rotate_hand_to, angle, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='a{id}b')
     def move(self, angles, wait):
-        self._arm.coupled_joints_move(angles, wait)
+        self._invoke(self._arm.coupled_joints_move, angles, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='a{id}b')
     def goto(self, angles, wait):
-        self._arm.coupled_joints_goto(angles, wait)
+        self._invoke(self._arm.coupled_joints_goto, angles, wait)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def shutdown(self, emergency):
-        self._arm.shutdown(emergency)
+        self._invoke(self._arm.shutdown, emergency)
 
     @dbus.service.method(INTERFACE_NAME)
     def soft_hi_Z(self):
-        self._arm.soft_hi_Z()
+        self._invoke(self._arm.soft_hi_Z)
 
     @dbus.service.method(INTERFACE_NAME)
     def hard_hi_Z(self):
-        self._arm.hard_hi_Z()
+        self._invoke(self._arm.hard_hi_Z)
 
     @dbus.service.method(INTERFACE_NAME, out_signature='ad')
     def get_current_positions(self):
-        return self._arm.get_joint_positions()
+        return self._invoke(self._arm.get_joint_positions)
 
 
 def start_node():
