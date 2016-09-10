@@ -58,10 +58,10 @@ class ArmServiceObject(dbus.service.Object):
 
     def _invoke(self, meth, *args):
         if self._logger:
-            self._logger.info('%s(%s) invoked', meth.__name__, ','.join(args))
+            self._logger.info('%s(%s) invoked', meth.__name__, ','.join([str(arg) for arg in args]))
         result = meth(*args)
         if self._logger:
-            self._logger.info('returning %s', result)
+            self._logger.info('--> returning %s', result)
         return result
 
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
