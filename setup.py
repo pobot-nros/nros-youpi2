@@ -26,5 +26,8 @@ setup(
             "nros-youpi2-systemd-install = nros.youpi2.setup.systemd:install_service [systemd]",
             "nros-youpi2-systemd-remove = nros.youpi2.setup.systemd:remove_service [systemd]",
         ]
+    },
+    package_data={
+        'nros.youpi2.setup': ['pkg_data/*']
     }
 )
