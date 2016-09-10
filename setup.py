@@ -14,11 +14,17 @@ setup(
     author='Eric Pascual',
     author_email='eric@pobot.org',
     install_requires=['nros-core', 'pybot-youpi2'],
+    extras_require={
+        'systemd': ['pybot-systemd']
+    },
     download_url='https://github.com/Pobot/PyBot',
     description='Youpi2 arm nROS node',
     entry_points={
         'console_scripts': [
-            'youpi2-node = nros.youpi2.nodes:start_node'
+            'nros-youpi2 = nros.youpi2.nodes:start_node'
+            # optionals
+            "nros-youpi2-systemd-install = nros.youpi2.setup.systemd:install_service [systemd]",
+            "nros-youpi2-systemd-remove = nros.youpi2.setup.systemd:remove_service [systemd]",
         ]
     }
 )
