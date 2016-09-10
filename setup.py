@@ -21,7 +21,7 @@ setup(
     description='Youpi2 arm nROS node',
     entry_points={
         'console_scripts': [
-            'nros-youpi2 = nros.youpi2.nodes:start_node'
+            'nros-youpi2 = nros.youpi2.nodes:start_node',
             # optionals
             "nros-youpi2-systemd-install = nros.youpi2.setup.systemd:install_service [systemd]",
             "nros-youpi2-systemd-remove = nros.youpi2.setup.systemd:remove_service [systemd]",
