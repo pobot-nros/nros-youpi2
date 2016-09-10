@@ -2,14 +2,15 @@
 
 import dbus.service
 
-from nros.core.node import NROSNode, DEFAULT_SERVICE_OBJECT_PATH
+from nros.core.node import NROSNode
 from pybot.youpi2.model import YoupiArm
+from . import SERVICE_OBJECT_PATH, ARM_CONTROL_INTERFACE_NAME
 
 __author__ = 'Eric Pascual'
 
 
 class ArmNode(NROSNode):
-    SO_PATH = DEFAULT_SERVICE_OBJECT_PATH       #: path of the arm service object
+    SO_PATH = SERVICE_OBJECT_PATH           #: path of the arm service object
 
     _arm = None
     _so = None
@@ -36,7 +37,7 @@ class ArmNode(NROSNode):
 
 
 class ArmServiceObject(dbus.service.Object):
-    INTERFACE_NAME = 'org.pobot.nros.youpi'
+    INTERFACE_NAME = ARM_CONTROL_INTERFACE_NAME
 
     MOTOR_BASE, MOTOR_SHOULDER, MOTOR_ELBOW, MOTOR_WRIST, MOTOR_HAND = \
         YoupiArm.MOTOR_BASE, YoupiArm.MOTOR_SHOULDER, YoupiArm.MOTOR_ELBOW, YoupiArm.MOTOR_WRIST, \
