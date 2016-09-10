@@ -8,8 +8,8 @@ SERVICE_NAME = 'nros-youpi2'
 
 
 def install_service():
-    pbsystemd.helpers.install_service(SERVICE_NAME, __name__)
+    pbsystemd.helpers.install_unit(SERVICE_NAME, __name__)
 
 
 def remove_service():
-    pbsystemd.helpers.remove_service(SERVICE_NAME, __name__)
+    pbsystemd.helpers.remove_unit(SERVICE_NAME, __name__)
