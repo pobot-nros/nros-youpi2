@@ -112,6 +112,10 @@ class ArmServiceObject(dbus.service.Object):
     def get_current_positions(self):
         return self._invoke(self._arm.get_joint_positions)
 
+    @dbus.service.method(INTERFACE_NAME, out_signature='b')
+    def is_moving(self):
+        return self._invoke(self._arm.is_moving)
+
 
 def start_node():
     ArmNode.main()
