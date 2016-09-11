@@ -96,6 +96,10 @@ class ArmServiceObject(dbus.service.Object):
     def goto(self, angles, wait):
         self._invoke(self._arm.coupled_joints_goto, angles, wait)
 
+    @dbus.service.method(INTERFACE_NAME, in_signature='aib')
+    def go_home(self, joints, wait):
+        self._invoke(self._arm.go_home, joints, wait)
+
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def shutdown(self, emergency):
         self._invoke(self._arm.shutdown, emergency)
@@ -114,7 +118,7 @@ class ArmServiceObject(dbus.service.Object):
 
     @dbus.service.method(INTERFACE_NAME, out_signature='b')
     def is_moving(self):
-        return self._invoke(self._arm.is_moving)
+        return self._arm.is_moving()
 
 
 def start_node():
