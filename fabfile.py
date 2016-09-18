@@ -1,8 +1,6 @@
 from pybot.fabtasks import *
-from fabric.api import env
 from fabric.state import output
 
-env.hosts = ['rpi3']
 output.output = False
 
 PREFIX = '/home/pi/.local'
@@ -17,3 +15,9 @@ def install_service():
 @task()
 def remove_service():
     sudo(CMDE_BASE + 'remove', shell=True)
+
+
+@task()
+def restart_service():
+    sudo('systemctl restart nros-youpi2', shell=True)
+
