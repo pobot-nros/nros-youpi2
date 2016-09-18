@@ -64,15 +64,23 @@ class ArmServiceObject(dbus.service.Object):
             self._logger.info('--> returning %s', result)
         return result
 
-    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    @dbus.service.method(INTERFACE_NAME, out_signature='a{sa{sd}}')
     def get_settings(self):
+        arm = self._arm
+
         def settings_as_dict(s):
             return {
-                'min_pos': s.MIN_POS_DEG,
-                'max_pos': s.MAX_POS_DEG
+                'min_pos': float(s.MIN_POS_DEG),
+                'max_pos': float(s.MAX_POS_DEG)
             }
 
-        return [settings_as_dict(s) for s in self._arm.settings]
+        def _wrapped():
+            return {
+                arm.MOTOR_NAMES[j]: settings_as_dict(s)
+                for j, s in enumerate(arm.settings) if j != arm.MOTOR_GRIPPER
+                }
+
+        return self._logged_call(_wrapped)
 
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def open_gripper(self, wait):
@@ -130,9 +138,25 @@ class ArmServiceObject(dbus.service.Object):
     def hard_hi_Z(self):
         self._logged_call(self._arm.hard_hi_Z)
 
-    @dbus.service.method(INTERFACE_NAME, out_signature='ad')
-    def get_current_positions(self):
-        return self._logged_call(self._arm.get_joint_positions)
+    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    def get_motor_positions(self):
+        arm = self._arm
+
+        def _wrapped():
+            return {
+                arm.MOTOR_NAMES[j]: v for j, v in enumerate(arm.get_motor_positions())
+            }
+        return self._logged_call(_wrapped)
+
+    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    def get_joint_positions(self):
+        arm = self._arm
+
+        def _wrapped():
+            return {
+                arm.MOTOR_NAMES[j]: v for j, v in enumerate(arm.get_joint_positions())
+            }
+        return self._logged_call(_wrapped)
 
     @dbus.service.method(INTERFACE_NAME, out_signature='b')
     def is_moving(self):
