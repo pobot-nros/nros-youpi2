@@ -64,6 +64,16 @@ class ArmServiceObject(dbus.service.Object):
             self._logger.info('--> returning %s', result)
         return result
 
+    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    def get_settings(self):
+        def settings_as_dict(s):
+            return {
+                'min_pos': s.MIN_POS_DEG,
+                'max_pos': s.MAX_POS_DEG
+            }
+
+        return [settings_as_dict(s) for s in self._arm.settings]
+
     @dbus.service.method(INTERFACE_NAME, in_signature='b')
     def open_gripper(self, wait):
         self._logged_call(self._arm.open_gripper, wait)
