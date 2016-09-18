@@ -138,25 +138,13 @@ class ArmServiceObject(dbus.service.Object):
     def hard_hi_Z(self):
         self._logged_call(self._arm.hard_hi_Z)
 
-    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    @dbus.service.method(INTERFACE_NAME, out_signature='ad')
     def get_motor_positions(self):
-        arm = self._arm
+        return self._logged_call(self._arm.get_motor_positions)
 
-        def _wrapped():
-            return {
-                arm.MOTOR_NAMES[j]: v for j, v in enumerate(arm.get_motor_positions())
-            }
-        return self._logged_call(_wrapped)
-
-    @dbus.service.method(INTERFACE_NAME, out_signature='a{sd}')
+    @dbus.service.method(INTERFACE_NAME, out_signature='ad')
     def get_joint_positions(self):
-        arm = self._arm
-
-        def _wrapped():
-            return {
-                arm.MOTOR_NAMES[j]: v for j, v in enumerate(arm.get_joint_positions())
-            }
-        return self._logged_call(_wrapped)
+        return self._logged_call(self._arm.get_joint_positions)
 
     @dbus.service.method(INTERFACE_NAME, out_signature='b')
     def is_moving(self):
