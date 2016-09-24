@@ -4,7 +4,7 @@ Content
 A nROS node for controlling a Youpi robotic arm.
 
 .. image:: youpi-at-work.jpg
-   :width: 500px
+   :width: 50%
 
 The Genesis
 ===========
