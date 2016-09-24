@@ -3,13 +3,14 @@ Content
 
 A nROS node for controlling a Youpi robotic arm.
 
-.. image:: youpi-orig.jpg
-
 The Genesis
 ===========
 
 The Youpi robotic arm is an educational tool which has been distributed in France
 during the early 80ies for teaching the basics of robotics in technology oriented classes.
+
+.. image:: youpi-orig.jpg
+   :align: center
 
 It was supposed to be controlled by a personal computer built by the French maker
 Thomson, which was one of the providers of the Education National Administration in these old ages.
@@ -34,6 +35,7 @@ this has resulted in a 80ies flavoured `demonstrator <http://www.pobot.org/Le-ma
 presented during the French national scientific event (`Fête de la Science <http://www.fetedelascience.fr/>`_).
 
 .. image:: youpinitel.jpg
+   :align: center
 
 
 The present
