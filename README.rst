@@ -15,6 +15,8 @@ The communication link between them was achieved by a DB25 interface, exposing t
 for stepping the 6 motors contained in the arm. The control software was a proprietary one,
 targeting for this computer only.
 
+For more detail about Youpi : http://youpi.forler.ch/ (French)
+
 One copy of this arm has been donated to POBOT association (http://www.pobot.org) by a teacher,
 since it was no more used (nor usable) for years and thus was taking place in his lab for nothing.
 He gave it to us as a source of mechanical spare parts in his mind.
