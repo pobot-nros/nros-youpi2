@@ -3,8 +3,7 @@ Content
 
 A nROS node for controlling a Youpi robotic arm.
 
-.. image:: youpi-at-work.jpg
-   :width: 50%
+.. image:: youpi-orig.jpg
 
 The Genesis
 ===========
@@ -33,6 +32,9 @@ for the communication layer.
 Complemented with a Raspberry Pi implementing a `Videotex <https://en.wikipedia.org/wiki/Videotex>`_ server,
 this has resulted in a 80ies flavoured `demonstrator <http://www.pobot.org/Le-mariage-des-annees-80-et-2010.html>`_
 presented during the French national scientific event (`Fête de la Science <http://www.fetedelascience.fr/>`_).
+
+.. image:: youpinitel.jpg
+
 
 The present
 ===========
