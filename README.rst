@@ -23,4 +23,4 @@ Dependencies
 ============
 
 In addition to `nROS core <https://github.com/pobot-nros/nros-core>`_, this project depends on the
-`Youpi interfacing library <https://github.com/pobot-pybot/pybot-youpi2>`.
+`Youpi interfacing library <https://github.com/pobot-pybot/pybot-youpi2>`_.
